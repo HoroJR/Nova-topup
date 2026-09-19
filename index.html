@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Topup</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #0b1020;
+      color: white;
+      min-height: 100vh;
+    }
+    header {
+      background: #111936;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #252d4d;
+    }
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #6c8cff;
+    }
+    .login-btn {
+      background: #6c8cff;
+      color: white;
+      border: 0;
+      padding: 11px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .hero {
+      text-align: center;
+      padding: 70px 20px 45px;
+    }
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      color: #aeb7d4;
+      font-size: 17px;
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    .wallet {
+      width: 90%;
+      max-width: 950px;
+      margin: 20px auto 45px;
+      background: #121a38;
+      border: 1px solid #273158;
+      border-radius: 18px;
+      padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .wallet-title {
+      color: #aeb7d4;
+      margin-bottom: 8px;
+    }
+    .balance {
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .topup {
+      background: #6c8cff;
+      color: white;
+      border: none;
+      padding: 13px 22px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .products {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding-bottom: 60px;
+    }
+    .products h2 {
+      margin-bottom: 22px;
+      font-size: 27px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: #121a38;
+      border: 1px solid #273158;
+      border-radius: 16px;
+      padding: 24px;
+      transition: 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #6c8cff;
+    }
+    .icon {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin-bottom: 9px;
+    }
+    .card p {
+      color: #9da7c5;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .buy {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 9px;
+      background: #202b55;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .buy:hover {
+      background: #6c8cff;
+    }
+    footer {
+      text-align: center;
+      color: #727c9d;
+      padding: 25px;
+      border-top: 1px solid #252d4d;
+      font-size: 13px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-box {
+      background: #121a38;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 18px;
+      padding: 25px;
+      border: 1px solid #303a63;
+    }
+    .modal-box h2 {
+      margin-bottom: 20px;
+    }
+    .modal-box input {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 12px;
+      background: #0b1020;
+      border: 1px solid #303a63;
+      border-radius: 9px;
+      color: white;
+      outline: none;
+    }
+    .modal-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 9px;
+      background: #6c8cff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    .close {
+      background: #252d4d !important;
+    }
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+      .wallet {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">NOVA TOPUP</div>
+  <button class="login-btn" onclick="openLogin()">Login</button>
+</header>
+<section class="hero">
+  <h1>Fast & Simple Top-Up</h1>
+  <p>
+    Your digital wallet for games, apps and entertainment.
+    Create an account, add balance and purchase your favorite services.
+  </p>
+</section>
+<section class="wallet">
+  <div>
+    <div class="wallet-title">Wallet Balance</div>
+    <div class="balance">$0.00</div>
+  </div>
+  <button class="topup" onclick="openTopup()">
+    + Add Balance
+  </button>
+</section>
+<section class="products">
+  <h2>Available Services</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🎮</div>
+      <h3>PUBG Mobile</h3>
+      <p>Top up your PUBG Mobile account quickly.</p>
+      <button class="buy" onclick="buy('PUBG Mobile')">Top Up</button>
+    </div>
+    <div class="card">
+      <div class="icon">🔥</div>
+      <h3>Free Fire</h3>
+      <p>Purchase diamonds for your Free Fire account.</p>
+      <button class="buy" onclick="buy('Free Fire')">Top Up</button>
+    </div>
+    <div class="card">
+      <div class="icon">🎮</div>
+      <h3>PlayStation</h3>
+      <p>Get PlayStation Network balance and products.</p>
+      <button class="buy" onclick="buy('PlayStation')">Buy</button>
+    </div>
+    <div class="card">
+      <div class="icon">📱</div>
+      <h3>Bigo Live</h3>
+      <p>Recharge your Bigo Live account.</p>
+      <button class="buy" onclick="buy('Bigo Live')">Recharge</button>
+    </div>
+    <div class="card">
+      <div class="icon">💜</div>
+      <h3>Pota Live</h3>
+      <p>Recharge your Pota Live account.</p>
+      <button class="buy" onclick="buy('Pota Live')">Recharge</button>
+    </div>
+    <div class="card">
+      <div class="icon">✨</div>
+      <h3>Soul Chill</h3>
+      <p>Top up your Soul Chill account.</p>
+      <button class="buy" onclick="buy('Soul Chill')">Recharge</button>
+    </div>
+    <div class="card">
+      <div class="icon">💬</div>
+      <h3>Yaahlan</h3>
+      <p>Recharge your Yaahlan account.</p>
+      <button class="buy" onclick="buy('Yaahlan')">Recharge</button>
+    </div>
+    <div class="card">
+      <div class="icon">🌟</div>
+      <h3>Junko</h3>
+      <p>Recharge your Junko account.</p>
+      <button class="buy" onclick="buy('Junko')">Recharge</button>
+    </div>
+  </div>
+</section>
+<footer>
+  © 2026 Nova Topup — Digital Wallet Platform
+</footer>
+<div class="modal" id="loginModal">
+  <div class="modal-box">
+    <h2>Login</h2>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <button class="close" onclick="closeLogin()">Close</button>
+  </div>
+</div>
+<div class="modal" id="topupModal">
+  <div class="modal-box">
+    <h2>Add Balance</h2>
+    <input type="number" id="amount" placeholder="Amount in USD">
+    <button onclick="addBalance()">Continue</button>
+    <button class="close" onclick="closeTopup()">Close</button>
+  </div>
+</div>
+<script>
+  function openLogin() {
+    document.getElementById("loginModal").style.display = "flex";
+  }
+  function closeLogin() {
+    document.getElementById("loginModal").style.display = "none";
+  }
+  function openTopup() {
+    document.getElementById("topupModal").style.display = "flex";
+  }
+  function closeTopup() {
+    document.getElementById("topupModal").style.display = "none";
+  }
+  function login() {
+    alert("Login system will be connected to the server soon.");
+  }
+  function addBalance() {
+    const amount = document.getElementById("amount").value;
+    if (!amount || amount <= 0) {
+      alert("Please enter a valid amount.");
+      return;
+    }
+    alert(
+      "Top-up request created for $" +
+      amount +
+      ". Payment methods will be connected next."
+    );
+    closeTopup();
+  }
+  function buy(service) {
+    alert(
+      service +
+      " selected. Login and wallet balance will be required to continue."
+    );
+  }
+</script>
+</body>
+</html>
